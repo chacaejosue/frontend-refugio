@@ -1,0 +1,23 @@
+---
+const { dark = false } = Astro.props;
+---
+<header class:list={['absolute inset-x-0 top-0 z-10', dark ? 'text-white' : 'text-ink']}>
+  <div class="mx-auto flex max-w-7xl items-center justify-between px-6 py-6 lg:px-10">
+    <a href="/" class="flex items-center gap-2 text-sm font-extrabold tracking-tight">
+      <span class="grid h-8 w-8 place-items-center rounded-lg bg-sun-500 text-lg text-ink">✦</span>
+      <span>refugio<span class="text-sun-500">.</span></span>
+    </a>
+    <nav class="hidden items-center gap-8 text-[11px] font-bold uppercase tracking-[.14em] md:flex">
+      <a href="/#inicio" class="transition hover:text-sun-500">Inicio</a>
+      <a href="/#historia" class="transition hover:text-sun-500">Nosotros</a>
+      <a href="/#ayudar" class="transition hover:text-sun-500">Cómo ayudar</a>
+      <a href="/#creadores" class="transition hover:text-sun-500">Creadores</a>
+      <a href="/login" class="transition hover:text-sun-500">Administración</a>
+    </nav>
+    <a href="/login" class="hidden rounded-full border border-current px-5 py-2 text-[11px] font-bold uppercase tracking-wider md:inline-flex">Acceder</a>
+    <button id="mobile-menu" class="text-2xl md:hidden" aria-label="Abrir menú">☰</button>
+  </div>
+</header>
+<script>
+  document.querySelector('#mobile-menu')?.addEventListener('click', () => document.querySelector('#mobile-nav')?.classList.toggle('hidden'));
+</script>

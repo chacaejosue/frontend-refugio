@@ -1,0 +1,11 @@
+---
+import MainLayout from '../../../layouts/MainLayout.astro'; import AnimalForm from '../../../components/animals/AnimalForm.astro';
+---
+<MainLayout title="Editar animal · Refugio"><main class="min-h-screen bg-slate-50"><header class="border-b border-slate-200 bg-white"><div class="mx-auto max-w-4xl px-6 py-5"><a href="/admin/animals" class="text-sm font-bold text-teal-900">← Volver a animales</a></div></header><section class="mx-auto max-w-2xl px-6 py-12"><p class="text-xs font-bold uppercase tracking-[.2em] text-teal-800">Editar información</p><h1 class="mt-2 font-display text-5xl">Actualizar animal</h1><div class="mt-10 rounded-3xl bg-white p-6 shadow-soft sm:p-10"><AnimalForm mode="edit" /></div></section></main><script src="../../../scripts/animal-form.ts"></script><script>
+    import { listAnimals } from '../../../services/animal.service';
+    const id = Number(new URLSearchParams(window.location.search).get('id'));
+    const form = document.querySelector<HTMLFormElement>('#animal-form');
+    const error = document.querySelector<HTMLElement>('#form-error');
+    const load = async () => { try { const animal = (await listAnimals()).find((item) => item.id === id); if (!animal || !form) throw new Error('Animal no encontrado'); (['nombre', 'raza', 'edad', 'sexo', 'tipoAnimal'] as const).forEach((field) => { const input = form.elements.namedItem(field) as HTMLInputElement | HTMLSelectElement; if (input) input.value = String(animal[field]); }); } catch (cause) { if (error) { error.textContent = cause instanceof Error ? cause.message : 'No se pudo cargar el animal'; error.classList.remove('hidden'); } } };
+    load();
+  </script></MainLayout>

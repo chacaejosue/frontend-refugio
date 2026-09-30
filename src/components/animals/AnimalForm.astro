@@ -1,0 +1,14 @@
+---
+const { mode = 'create', animal = null } = Astro.props;
+---
+<form id="animal-form" class="space-y-5" data-mode={mode} data-id={animal?.id ?? ''}>
+  <div class="grid gap-5 sm:grid-cols-2">
+    <label class="label">Nombre<input class="field" name="nombre" value={animal?.nombre ?? ''} required /></label>
+    <label class="label">Raza<input class="field" name="raza" value={animal?.raza ?? ''} required /></label>
+    <label class="label">Edad<input class="field" name="edad" type="number" min="0" value={animal?.edad ?? ''} required /></label>
+    <label class="label">Sexo<select class="field" name="sexo"><option value="Hembra" selected={animal?.sexo === 'Hembra'}>Hembra</option><option value="Macho" selected={animal?.sexo === 'Macho'}>Macho</option></select></label>
+    <label class="label sm:col-span-2">Tipo de animal<select class="field" name="tipoAnimal"><option value="Perro" selected={animal?.tipoAnimal === 'Perro'}>Perro</option><option value="Gato" selected={animal?.tipoAnimal === 'Gato'}>Gato</option></select></label>
+  </div>
+  <p id="form-error" class="hidden rounded-xl bg-red-50 px-4 py-3 text-sm text-red-700"></p>
+  <button class="button-primary w-full" type="submit">{mode === 'edit' ? 'Guardar cambios' : 'Registrar animal'}</button>
+</form>

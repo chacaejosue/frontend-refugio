@@ -1,0 +1,4 @@
+---
+import MainLayout from '../../../layouts/MainLayout.astro'; import AnimalForm from '../../../components/animals/AnimalForm.astro';
+---
+<MainLayout title="Registrar animal · Refugio"><main class="min-h-screen bg-slate-50"><header class="border-b border-slate-200 bg-white"><div class="mx-auto max-w-4xl px-6 py-5"><a href="/admin/animals" class="text-sm font-bold text-teal-900">← Volver a animales</a></div></header><section class="mx-auto max-w-2xl px-6 py-12"><p class="text-xs font-bold uppercase tracking-[.2em] text-teal-800">Nuevo residente</p><h1 class="mt-2 font-display text-5xl">Registrar animal</h1><div class="mt-10 rounded-3xl bg-white p-6 shadow-soft sm:p-10"><AnimalForm /></div></section></main><script src="../../../scripts/animal-form.ts"></script></MainLayout>
